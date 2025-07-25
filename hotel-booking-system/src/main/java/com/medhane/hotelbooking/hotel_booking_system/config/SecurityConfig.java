@@ -11,10 +11,16 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-            .anyRequest().authenticated()
-            .and()
-            .formLogin();
+        http
+                .authorizeHttpRequests(requests -> requests
+                        .requestMatchers("/login").permitAll() // allow public access
+                        .anyRequest().authenticated())
+                .formLogin(login -> login
+                        .loginPage("/login") // I am telling spring to use the login page
+                        .permitAll())
+                .logout(logout -> logout
+                        .permitAll());
+
         return http.build();
     }
 }

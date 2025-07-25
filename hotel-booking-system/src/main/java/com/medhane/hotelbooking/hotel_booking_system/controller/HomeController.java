@@ -8,6 +8,6 @@ public class HomeController {
     
     @GetMapping("/")
     public String home() {
-        return "Welcome to Hotel Booking System!";
+        return "Welcome to the Hotel Booking System";
     }
 }
