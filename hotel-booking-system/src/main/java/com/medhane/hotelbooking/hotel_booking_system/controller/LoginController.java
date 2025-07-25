@@ -20,7 +20,7 @@ public class LoginController {
        List<Room> rooms = roomService.getAvailableRooms(); 
         System.out.println("Available rooms: " + rooms.size());
         model.addAttribute("availableRooms", rooms);
-        return "login";
+        return "login-page";
     }
 
     

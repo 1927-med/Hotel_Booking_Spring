@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
     
-    @GetMapping("/")
+    @GetMapping("/login.html")
     public String home() {
         return "Welcome to the Hotel Booking System";
     }
