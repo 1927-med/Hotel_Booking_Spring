@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Hotel Booking System</h1>
+
+    <h2>Available Rooms</h2>
+    <ul>
+        <li th:each="room : ${availableRooms}">
+            <span th:text="${room.type}">Room Type</span> -
+            <span th:text="${room.price}">Price</span>
+            <form th:action="@{/book}" method="post">
+                <input type="hidden" th:name="roomId" th:value="${room.id}" />
+                <button type="submit">Book Now</button>
+            </form>
+        </li>
+    </ul>
+</body>
+</html>
