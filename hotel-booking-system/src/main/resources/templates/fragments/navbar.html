@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <nav th:fragment="navbar">
+        <div class="logo">🏨 <span th:text="#{app.name}">Hotel Booking</span></div>
+        <div class="nav-links">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/rooms}">Rooms</a>
+            <a th:href="@{/my-bookings}" sec:authorize="isAuthenticated()">My Bookings</a>
+            <a th:href="@{/profile}" sec:authorize="isAuthenticated()">Profile</a>
+            <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a>
+            <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()" class="logout-form">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </nav>
+</body>
+</html>
