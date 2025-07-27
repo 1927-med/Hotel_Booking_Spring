@@ -25,5 +25,22 @@
             <!-- Room highlights would go here -->
         </div>
     </section>
+    <section class="featured-rooms">
+        <div class="container">
+            <h2>Our Featured Rooms</h2>
+            <div class="room-highlights">
+                <div th:each="room : ${featuredRooms}" class="room-card">
+                    <div class="room-image" 
+                         th:style="'background-image: url(' + (${room.imageUrl} ?: '/images/default-room.jpg') + ')'">
+                    </div>
+                    <div class="room-details">
+                        <h3 th:text="${room.type}">Deluxe Suite</h3>
+                        <p class="price" th:text="'$' + ${#numbers.formatDecimal(room.price, 1, 2)} + '/night'">$199/night</p>
+                        <a th:href="@{/rooms/{id}(id=${room.id})}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

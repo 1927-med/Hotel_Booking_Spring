@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
     <nav th:fragment="navbar">
-        <div class="logo">🏨 <span th:text="#{app.name}">Hotel Booking</span></div>
+        <div class="logo">
+            <a th:href="@{/}">🏨 <span>Hotel Booking</span></a>
+        </div>
+        
         <div class="nav-links">
             <a th:href="@{/}">Home</a>
             <a th:href="@{/rooms}">Rooms</a>
-            <a th:href="@{/my-bookings}" sec:authorize="isAuthenticated()">My Bookings</a>
-            <a th:href="@{/profile}" sec:authorize="isAuthenticated()">Profile</a>
-            <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a>
-            <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()" class="logout-form">
-                <button type="submit">Logout</button>
-            </form>
+            
+            <!-- Authenticated User Links -->
+            <div sec:authorize="isAuthenticated()">
+                <a th:href="@{/my-bookings}">My Bookings</a>
+                <a th:href="@{/profile}">Profile</a>
+                <form th:action="@{/logout}" method="post" class="logout-form">
+                    <button type="submit" class="btn-link">Logout</button>
+                </form>
+            </div>
+            
+            <!-- Guest Links -->
+            <div sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}">Login</a>
+                <a th:href="@{/register}">Register</a>
+            </div>
         </div>
     </nav>
 </body>
