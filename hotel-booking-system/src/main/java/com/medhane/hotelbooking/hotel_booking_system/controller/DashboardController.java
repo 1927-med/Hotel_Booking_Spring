@@ -17,8 +17,8 @@ public class DashboardController {
 
     @GetMapping("/home")
     public String dashboard(Model model) {
-        List<Room> availableRooms = roomService.getAllRooms(); 
+        List<Room> availableRooms = roomService.getAvailableRooms();
         model.addAttribute("availableRooms", availableRooms);
-        return "dashboard";
+        return "dashboard";  // dashboard.html
     }
 }
