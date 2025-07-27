@@ -2,81 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Hotel Booking System - Home</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('/images/hotel-background.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            margin: 0;
-            padding: 0;
-            color: #fff;
-        }
-
-        nav {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 120px 20px;
-            background-color: rgba(0, 0, 0, 0.5);
-            min-height: 100vh;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 40px;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            font-size: 18px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link th:href="@{/css/home.css}" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <div class="logo">🏨 Hotel Booking</div>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">My Bookings</a>
-            <a href="#">Profile</a>
-            <a href="/logout">Logout</a>
-        </div>
-    </nav>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
 
-    <div class="hero">
-        <h1>Welcome to Our Luxury Hotel</h1>
-        <p>Book your perfect stay with us — comfort, convenience, and class.</p>
-        <a href="#" class="btn">Book Now</a>
+    <div class="hero" th:style="'background-image: linear-gradient(rgba(0, 0, 0, 0.5), url(/images/hotel-background.jpg)'">
+        <div class="hero-content">
+            <h1>Experience Luxury Redefined</h1>
+            <p th:text="${#dates.format(#dates.createNow(), 'MMMM yyyy')}">July 2023</p>
+            <div class="hero-buttons">
+                <a th:href="@{/rooms}" class="btn-primary">View Rooms</a>
+                <a th:href="@{/offers}" class="btn-secondary">Special Offers</a>
+            </div>
+        </div>
     </div>
+
+    <!-- Featured Rooms Section -->
+    <section class="featured-rooms" th:if="${featuredRooms != null and !featuredRooms.empty}">
+        <h2>Our Featured Rooms</h2>
+        <div class="room-highlights">
+            <!-- Room highlights would go here -->
+        </div>
+    </section>
 </body>
 </html>
