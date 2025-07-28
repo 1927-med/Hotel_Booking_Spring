@@ -9,7 +9,7 @@ import com.medhane.hotelbooking.hotel_booking_system.model.User;
 
 import com.medhane.hotelbooking.hotel_booking_system.repository.UserRepository;
 
-@Service
+//@Service
 public class CustomUserDetailsService implements UserDetailsService{
     private final UserRepository userRepository;
     
